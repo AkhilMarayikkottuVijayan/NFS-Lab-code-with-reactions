@@ -1,0 +1,47 @@
+SUBROUTINE BODY
+USE VARIABLES
+
+ALLOCATE(OVER(4))
+
+TOL = 1E-16
+ DO 100 K=1, TNS
+		SURF(5,K) = SURF(4,K)-SURF(2,K)														
+		SURF(6,K) = SURF(3,K)-SURF(1,K)                                       												
+		SURF(7,K) = SURF(6,K)*SURF(2,K)-SURF(5,K)*SURF(1,K)						
+		SURF(8,K) = SQRT((SURF(1,K)-SURF(3,K))**2+(SURF(2,K)-SURF(4,K))**2)	
+		SURF(9,K) = SURF(5,K)/SURF(6,K)															
+		SURF(10,K)= ATAN2(SURF(5,K),SURF(6,K))	
+															
+		IF(SURF(5,K).EQ.0) THEN
+			IF(SURF(3,K).GT.SURF(1,K)) THEN
+				SURF(10,K)=0
+			ELSE
+				SURF(10,K)=PI
+			END IF
+		ELSE IF (SURF(6,K).EQ.0) THEN
+			IF(SURF(4,K).GT.SURF(2,K)) THEN
+				SURF(10,K)=PI/2
+			ELSE
+			SURF(10,K)=-PI/2
+			END IF
+		END IF
+		SURF(11,K)= SURF(10,K)+PI/2
+		IF(SURF(11,K).GE.(2*PI)) THEN
+			SURF(11,K) = SURF(11,K)-(2*PI)
+		END IF
+		SCEN(1,K) = 0.5*(SURF(1,K)+SURF(3,K))
+		SCEN(2,K) = 0.5*(SURF(2,K)+SURF(4,K))
+		MNMX(1,K) = MIN(SURF(1,K),SURF(3,K))
+		MNMX(2,K) = MAX(SURF(1,K),SURF(3,K))
+		MNMX(3,K) = MIN(SURF(2,K),SURF(4,K))
+		MNMX(4,K) = MAX(SURF(2,K),SURF(4,K))
+100 CONTINUE
+	OVER(1) = MINVAL(MNMX(1,1:TNS))
+	OVER(2) = MAXVAL(MNMX(2,1:TNS)) 
+	OVER(3) = MINVAL(MNMX(3,1:TNS))
+	OVER(4) = MAXVAL(MNMX(4,1:TNS))
+IF(rank.EQ.0)WRITE(*,*)"PREPROSSING-BODY............. SUCCESSFUL"
+
+END SUBROUTINE
+
+

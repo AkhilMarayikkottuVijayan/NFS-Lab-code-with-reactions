@@ -1,0 +1,34 @@
+SUBROUTINE	BOUNDS(I,X,Y)
+	USE VARIABLES
+	INTEGER 				:: I
+	DOUBLE PRECISION  :: X,Y
+
+	IF (X.LT.OB(1).OR.X.GT.OB(2)) THEN
+		IF (X.LT.OB(1)) K=1
+		IF (X.GT.OB(2)) K=2
+		IF (BC(K).EQ.2) THEN
+			X=2.*OB(K)-X
+			PP(4,I)=-PP(4,I)
+		ELSE IF (BC(K).EQ.1) THEN
+			IF(K.EQ.1) X = OB(2) - (X-OB(1)) 
+			IF(K.EQ.2) X = OB(1) + (X-OB(2)) 
+		ELSE
+			MSTAT(I)=1
+		END IF
+	END IF
+
+	IF (Y.LT.OB(3).OR.Y.GT.OB(4)) THEN
+		IF (Y.LT.OB(3)) K=3
+		IF (Y.GT.OB(4)) K=4
+		IF (BC(K).EQ.2) THEN
+			Y=2.*OB(K)-Y
+			PP(5,I)=-PP(5,I)
+		ELSE IF (BC(K).EQ.1) THEN
+			IF(K.EQ.3) Y = OB(4) - (Y-OB(3)) 
+			IF(K.EQ.4) Y = OB(3) + (Y-OB(4))
+		ELSE
+			MSTAT(I)=1
+		END IF
+	END IF
+RETURN
+END SUBROUTINE

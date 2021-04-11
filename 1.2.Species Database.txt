@@ -1,0 +1,83 @@
+SPECIES DATABASE
+5								Total no. of species
+
+Nitrogen	
+N2								Species Symbol
+2								No. of atoms per Molecule
+LIN							Configuration of atoms
+4.16999E-10 						Diameter of the molecule
+273							Reference Temperature
+0.74							Viscosity-Temp power law
+1							Reciprocal of VSS scattering parameter
+4.6490E-26 						Mass of Molecule
+1.4							Gamma	
+2								No. of rotational DOF of species 
+1								No. of vibrational modes of species
+3395							Characteristic Vibrational Temperature
+0 0 5							Coefficients for rotational relaxation number calculations
+9.1 220 						Coefficients for vibrational relaxation number calculations
+
+Nitrogen atom
+N							Species Symbol
+1							No. of atoms per Molecule
+LIN							Configuration of atoms
+3.0E-10 						Diameter of the molecule
+273							Reference Temperature
+0.75							Viscosity-Temp power law
+1							Reciprocal of VSS scattering parameter
+2.325867E-26 						Mass of Molecule
+1.667							Gamma	
+0								No. of rotational DOF of species 
+0								No. of vibrational DOF of species
+0								Characteristic Vibrational Temperature
+0 0 5							Coefficients for rotational relaxation number calculations
+10 100 							Coefficients for vibrational relaxation number calculations
+
+Oxygen
+O2							Species Symbol
+2							No. of atoms per Molecule
+LIN							Configuration of atoms
+4.010E-10 				   	        Diameter of the molecule
+273							Reference Temperature
+0.77							Viscosity-Temp power law
+1							Reciprocal of VSS scattering parameter
+5.312E-26 						Mass of Molecule
+1.4							Gamma	
+2								No. of rotational DOF of species 
+2								No. of vibrational DOF of species
+2256								Characteristic Vibrational Temperature
+0 0 5							Coefficients for rotational relaxation number calculations
+56.5  153.5 						Coefficients for vibrational relaxation number calculations
+
+Oxygen atom
+O							Species Symbol
+1							No. of atoms per Molecule
+LIN							Configuration of atoms
+3.10E-10 						Diameter of the molecule
+273							Reference Temperature
+0.75							Viscosity-Temp power law
+1							Reciprocal of VSS scattering parameter
+2.656E-26 						Mass of Molecule
+1.667							Gamma	
+0								No. of rotational DOF of species 
+0								No. of vibrational DOF of species
+0							Characteristic Vibrational Temperature
+0 0 5							Coefficients for rotational relaxation number calculations
+10 100 							Coefficients for vibrational relaxation number calculations
+
+Nitric oxide
+NO                                                      Species Symbol
+2                                                       No. of atoms per Molecule
+LIN                                                     Configuration of atoms
+4.20E-10                                                Diameter of the molecule
+273                                                     Reference Temperature
+0.75                                                    Viscosity-Temp power law
+1                                                       Reciprocal of VSS scattering parameter
+4.981E-26                                               Mass of Molecule
+1.4                                                     Gamma
+2                                                               No. of rotational DOF of species
+1                                                               No. of vibrational DOF of species
+2719                                                    Characteristic Vibrational Temperature
+0 0 5                                                   Coefficients for rotational relaxation number calculations
+1750 73.5                                               Coefficients forvibrational relaxation number calculations
+

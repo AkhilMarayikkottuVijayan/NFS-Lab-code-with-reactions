@@ -1,0 +1,106 @@
+		DISSOCIATION-REACTION DATABASE
+				
+9				total number of reactions
+
+N2+N2---------> N+N+N2
+N2 N2				species involved
+0                               switch(0:OFF  1:ON)
+2				symmetry factor(epsilon)
+0.381932			coeff of reaction(A) in cubic meter/mole sec
+-3.5				temperature exponent(B)
+1.561E-18			Dissociation energy in Joules
+2				Active internal modes
+113035				Characteristic dissociation temp
+N N
+
+N2+N----------> N+N+N
+N2 N	                        species involved
+0                               switch(0:OFF  1:ON)
+1                               symmetry factor(epsilon)
+1.412576E-4                     coefficient of reaction(A)
+-2.5                            temperature exponent(B)
+1.561E-18                       Dissociation energy in Joules
+2				Active internal modes
+113035				Characteristic dissociation temp
+N N
+
+O2+O2---------> O+O+O2
+O2 O2                           species involved
+0                               switch(0:OFF  1:ON)
+2                               symmetry factor(epsilon)
+0.105470                        coefficient of reaction(A)
+-3.3999                         temperature exponent(B)
+8.198E-19                       Dissociation energy in Joules
+2				Active internal modes
+59362				Characteristic dissociation temp
+O O
+
+O2+O----------> O+O+O
+O2 O                            species involved
+0                               switch(0:OFF  1:ON)
+1                               symmetry factor(epsilon)
+0.20637E-10                     coefficient of reaction(A)
+-0.6828                         temperature exponent(B)
+8.198E-19                       Dissociation energy in Joules
+2				Active internal modes
+59362				Characteristic dissociation temp
+O O
+
+NO+N2----------> N+O+N2
+NO N2                           species involved
+0                               switch(0:OFF  1:ON)
+1                               symmetry factor(epsilon)
+2.1E-10                         coefficient of reaction(A)
+-1.0                            temperature exponent(B)
+10.43E-19                       Dissociation energy in Joules
+2                               Active internal modes
+75525                           Characteristic dissociation temp
+N O
+
+NO+O2----------> N+O+O2
+NO O2                           species involved
+0                               switch(0:OFF  1:ON)
+1                               symmetry factor(epsilon)
+2.0E-10                         coefficient of reaction(A)
+-1.0                            temperature exponent(B)
+10.43E-19                       Dissociation energy in Joules
+2                               Active internal modes
+75525                           Characteristic dissociation temp
+N O
+
+NO+NO----------> N+O+NO
+NO NO                           species involved
+0                               switch(0:OFF  1:ON)
+2                               symmetry factor(epsilon)
+1.0E-10                         coefficient of reaction(A)
+-1.0                            temperature exponent(B)
+10.43E-19                       Dissociation energy in Joules
+2                               Active internal modes
+75525                           Characteristic dissociation temp
+N O
+
+NO+O----------> N+O+O
+NO O                            species involved
+0                               switch(0:OFF  1:ON)
+1                               symmetry factor(epsilon)
+4.0E-10                         coefficient of reaction(A)
+-1.1                            temperature exponent(B)
+10.43E-19                       Dissociation energy in Joules
+2                               Active internal modes
+75525                           Characteristic dissociation temp
+N O
+
+NO+N----------> N+O+N
+NO N                            species involved
+0                               switch(0:OFF  1:ON)
+1                               symmetry factor(epsilon)
+4.0E-10                         coefficient of reaction(A)
+-1.1                            temperature exponent(B)
+10.43E-19                       Dissociation energy in Joules
+2                               Active internal modes
+75525                           Characteristic dissociation temp
+N O
+
+
+
+

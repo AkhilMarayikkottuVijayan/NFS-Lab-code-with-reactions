@@ -1,0 +1,36 @@
+SUBROUTINE ADAPCOND
+USE VARIABLES
+DOUBLE PRECISION :: L_LAMDA,L_KN,CNden,SQT
+	SQT = 1.414213562d0!!!SQRT(2)	
+	
+	DO N=1,NC_D
+		CELLPOP(N) = 0
+	END DO
+
+	DO 110 N=1,NM
+		L = PP(9,I)
+		MSC = IP(N)
+		MC	 = ISC(MSC)
+		CELLPOP(MC)= CELLPOP(MC)+1
+110 CONTINUE
+
+	
+	DO 100 N=1, NC_SD
+		CNden = (CELLPOP(N)*FNUM/CC(N))
+		L = 1
+		L_LAMDA = 1/(SQT*PI*(SP(1,L)**2)*CNden)
+		L_KN = L_LAMDA/SQRT(CC(N))
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		IF(CC(N).EQ.0)THEN
+			CAR(N)=0
+			GO TO 100
+		END IF
+		IF (L_KN .LT. KNCC) THEN
+			CAR(N)=1
+		ELSE
+			CAR(N)=0
+		END IF
+100 CONTINUE
+
+END SUBROUTINE

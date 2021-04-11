@@ -1,0 +1,23 @@
+SUBROUTINE ROTCOND(N)
+USE VARIABLES
+DOUBLE PRECISION :: R_Relax
+R_FLAG(1:2) = 0
+DO 100 I =1,2
+	IF(I.EQ.1) THEN
+		L = PP(9,CA(1)) 
+		LL= PP(9,CA(2)) 
+	ELSE
+		L = PP(9,CA(2)) 
+		LL= PP(9,CA(1)) 
+	END IF
+	
+	IF(SP(7,L).GT.0) THEN
+       
+       		R_Relax = SPM(10,L,LL)*CT(N)**2+SPM(11,L,LL)*CT(N)+SPM(12,L,LL)   !!!!!CHANGE
+	IF((1/R_Relax).GT.RF(rank))THEN
+		R_FLAG(I) = 1
+	END IF
+	END IF
+
+100 CONTINUE
+END SUBROUTINE

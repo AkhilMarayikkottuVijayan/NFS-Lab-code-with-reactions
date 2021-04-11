@@ -1,0 +1,35 @@
+SUBROUTINE DETECTEQFCELL
+USE VARIABLES
+DOUBLE PRECISION :: L_LAMDA,CNden,SQT
+	SQT = 1.414213562d0!!!SQRT(2)	
+	!!!!!!!!!!!!!update Cell pop, allocation!!!!!!!
+
+DO 110 N=1,NM
+	L = PP(9,I)
+	MSC = IP(N)
+	MC	 = ISC(MSC)
+	NMCELL(MC)= NMCELL(MC)+1
+110 CONTINUE
+
+IF(NPR.EQ.(NTS(1)-1))THEN	
+        DO 100 N=1, NC_SD
+	        CNden = (NMCELL(N)*FNUM/CC(N))/(1000)
+	        L = 1
+	        L_LAMDA = 1/(SQT*PI*(SP(1,L)**2)*CNden)
+	        NEQ_PARAM(N) = L_LAMDA/(CC(N))**(1./2.)
+	
+	        IF(CC(N) .EQ. 0.0 .OR. NMCELL(N) .LE. 1) NEQ_PARAM(N)=0.0
+		IF(CC(N).EQ.0)THEN
+			CELLSPOT(N)=1
+			GO TO 100
+		END IF
+		
+		CELLSPOT(N)=1
+
+		IF (NEQ_PARAM(N) .LT. KNCC) CELLSPOT(N)=0
+			
+100 	CONTINUE
+END IF
+
+
+END SUBROUTINE

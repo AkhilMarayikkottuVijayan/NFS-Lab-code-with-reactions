@@ -1,0 +1,36 @@
+SUBROUTINE SAMPVDF
+USE VARIABLES
+INTEGER :: A,B,MC
+DOUBLE PRECISION :: SPD
+		OPEN(15,FILE="2.9.Vbin.dat",FORM="FORMATTED",ACCESS="APPEND")
+IF((X_PDF.GT.CB(1)).AND.(X_PDF.LE.CB(2))) THEN
+	IF((Y_PDF.GT.CB(3)).AND.(Y_PDF.LE.CB(4))) THEN
+Rank_PDF=rank
+		A=X_PDF/CW+1
+		B=Y_PDF/CH-(rank*NCY_D)
+		MC=(B*NCX_D)+A
+
+		DO 100 L = 1, NSP_T
+			IF(SP_EX(L).EQ.1) THEN
+				I = 0
+10				I = I+1
+				IF(I.LE.IC(2,MC,L))THEN
+
+					SPD = SQRT(PP(4,I)**2+PP(5,I)**2+PP(6,I)**2)
+					IF(SPD.GT.SPD_MAX)SPD_MAX=SPD
+					SMPC = SMPC+1
+					WRITE(15,*)SPD
+					IF(SMPC.LT.SMP_PDF)THEN
+						GO TO 10
+					ELSE
+						FLAG(7)=1
+						WRITE(15,*)"---------------------------------------",N_PDF		
+					END IF
+				END IF
+			END IF
+100 	CONTINUE
+	END IF
+END IF
+	CLOSE(15)
+	RETURN
+END SUBROUTINE

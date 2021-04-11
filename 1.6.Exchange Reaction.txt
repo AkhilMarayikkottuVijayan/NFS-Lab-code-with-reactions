@@ -1,0 +1,44 @@
+		EXCHANGE REACTION  DATABASE
+
+2			Total number of exchange reactions (FORWARD)
+
+NO + O ------------------> O2 + N
+NO O 			Reactants
+O2 N			Products
+0			Exchange reaction switch forwrd reac (1:ON 0:OFF)
+4775.994		C1 
+0.25			C2
+2.25			C3
+2.719E-19		Reaction Activation energy(J)
+0.2E-19			Reaction back Act Energy(J)
+
+N2 + O ----------------->  NO + N
+N2 O                    Reactants
+NO N                    Products
+0                       Exchange reaction switch forwrd reac (1:ON 0:OFF)
+8.116949E-6		C1
+-0.255			C2
+2.255			C3
+5.175E-19		Reaction Activation energy(J)
+0.2E-19			Reaction back Act Energy(J)
+
+2			Total number of REVERSE Reactions
+
+O2 + N -----------------> NO + O
+O2 N			Reactants
+NO O			Products
+2                       Exchange reaction switch  reac (2:ON 0:OFF)
+6.23499E-3 	        C4
+0.2600                  C5
+0.2E-19                 Reaction Activation energy(J)
+2.719E-19               Reaction back Act Energy(J)
+
+NO + N -----------------> N2 + O
+NO N                    Reactants
+N2 O                    Products
+2                       Exchange reaction switch reac (2:ON 0:OFF)
+9.093088                C4
+-0.250                  C5
+0.2E-19                 Reaction Activation energy(J)
+5.175E-19               Reaction back Act Energy(J)
+

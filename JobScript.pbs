@@ -1,0 +1,20 @@
+#!/bin/bash
+#----------------------------------------------------
+#SBATCH -J bndryIntr           # Job name
+#SBATCH -o bndryIntr.o%j       # Name of stdout output file
+#SBATCH -e bndryIntr.e%j       # Name of stderr error file
+#SBATCH -p development         # Queue (partition) name
+#SBATCH -N 1               # Total # of nodes
+#SBATCH -n 40              # Total # of mpi tasks
+#SBATCH -t 02:00:00        # Run time (hh:mm:ss)
+#SBATCH --mail-user=
+#SBATCH --mail-type=all    # Send email at begin and end of job
+#SBATCH -A TG-PHY160006       # Allocation name (req'd if you have more than 1)
+
+# Other commands must follow all #SBATCH directives...
+module list
+pwd
+date
+
+# Launch MPI code...
+mpirun -np 4 ./DSMC         # Use ibrun instead of mpirun or mpiexec

@@ -1,0 +1,18 @@
+			RECOMBINATION DATABASE
+
+2 		Number of recombination reactions
+
+N+N+T ----------> N2+T
+N N             Participating species
+0               Recombination switch(0:OFF  1:ON)
+8.0E-27		Coefficient for approx eqn of prob
+-1 		Exponent of Temperature 
+N2		Post recombination species
+
+O+O+T ----------> O2+T(to be calculated)
+O O             Participating species
+0               Recombination switch(0:OFF  1:ON)
+8.0E-27         Coefficient for approx eqn of prob
+-1              Exponent of Temperature
+O2              Post recombination species
+

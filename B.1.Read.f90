@@ -1,0 +1,142 @@
+SUBROUTINE READ
+USE VARIABLES
+CHARACTER(3) :: SP_NAME
+DOUBLE PRECISION :: FSP
+ OPEN(3,FILE='1.1.Inputscript.txt',FORM='FORMATTED')
+ 	READ(3,*)
+	READ(3,*) !---DOMAIN BOUNDARY INITIALIZATION---!
+	READ(3,*) OB(1),OB(3),OB(5)				! Reading Min X, Min Y & Min Z 
+	READ(3,*) OB(2),OB(4),OB(6)				! Reading Max X, Max Y & Max Z
+	READ(3,*) BC(1)								! Reading Left Boundary condition
+	READ(3,*) BC(2)								! Reading Right Boundary condition
+	READ(3,*) BC(3)								! Reading Bot Boundary condition
+	READ(3,*) BC(4)								! Reading Top Boundary condition
+	READ(3,*) BC(5)								! Reading Front Boundary condition
+	READ(3,*) BC(6)								! Reading Back Boundary condition
+	READ(3,*) NCX_D
+	READ(3,*) NCY_D
+NCX_OA=NCX_D
+NCY_OA=NCY_D
+!	READ(3,*) NSCX
+!	READ(3,*) NSCY
+	NSCX=1
+	NSCY=1
+	READ(3,*) FLAG(6)
+	READ(3,*) FLAG(8)
+	READ(3,*) KNCC
+	READ(3,*) KS_CRIT
+	READ(3,*) FLAG(9)
+        READ(3,*) QK_SWITCH
+        READ(3,*)
+	READ(3,*) !---DOMAIN STREAM INITIALIZATION---!
+	READ(3,*)
+	READ(3,*) FND_D
+	READ(3,*) TMP_D
+	READ(3,*) NSP_D
+	DO 100 L=1,NSP_D
+		READ(3,*) SP_NAME,FSP
+		DO 110 LL =1,NSP_T
+			IF(SP_NAME.EQ.SP_SY(LL))THEN
+				SP_EX(LL) = 1
+				SP_FR(LL) = FSP
+				
+			END IF
+110 	CONTINUE
+100 CONTINUE
+	READ(3,*)
+	READ(3,*) !---RUN PARAMETER INITIALIZATION---!
+	READ(3,*)
+	READ(3,*) FNUM
+	READ(3,*) DTM
+	READ(3,*) LB_MODEL(1)
+	READ(3,*) LB_MODEL(2)
+	READ(3,*) NTS(1)
+	READ(3,*) NTS(2)
+	READ(3,*)
+	READ(3,*) !---CHECKLIST SELECTION---!
+	READ(3,*)
+	READ(3,*) Check(1)
+	READ(3,*) X_PDF,Y_PDF
+	READ(3,*) SMP_PDF
+	READ(3,*) NBINS
+	READ(3,*) Check(2)
+	READ(3,*) Check(3)
+	READ(3,*) Check(4)
+	READ(3,*)
+	READ(3,*)!---JET STREAM INITIALIZATION---!
+	READ(3,*)
+	READ(3,*) NJET
+		ALLOCATE(DESC_J(1:NJET),JET(7,1:NJET),TMP_J(1:NJET),VP_J(6,1:NJET),FND_J(1:NJET))
+		ALLOCATE(PROF_J(1:NJET))
+		ALLOCATE(NSP_J(1:NJET),SP_FRJ(1:NJET,1:NSP_T))
+		ALLOCATE(ENT_J(1:NJET,1:NSP_T),REM_J(1:NJET,1:NSP_T))
+	IF(NJET.GT.0)THEN
+		DO J =1,NJET
+	 		READ(3,*) DESC_J(J)
+		 	READ(3,*) JET(1,J),JET(3,J)
+		 	READ(3,*) JET(2,J),JET(4,J)
+	 		READ(3,*) TMP_J(J)
+	 		READ(3,*) VP_J(1,J)
+	 		READ(3,*) FND_J(J)
+	 		READ(3,*) NSP_J(J)
+	 		DO 200 L=1,NSP_J(J)
+				READ(3,*) SP_NAME,FSP
+				DO 210 LL =1,NSP_T
+					IF(SP_NAME.EQ.SP_SY(LL))THEN
+						SP_EX(LL) = 1
+						SP_FRJ(J,LL) = FSP
+					END IF
+210 			CONTINUE
+200 		CONTINUE
+	 		READ(3,*) PROF_J(J)
+	 		READ(3,*) VP_J(4,J)
+	 		READ(3,*) VP_J(5,J)
+	 		READ(3,*) VP_J(6,J)
+		END DO	
+	ELSE
+		DO J=1,12
+			READ(3,*)
+		END DO
+	END IF
+	READ(3,*)
+	READ(3,*)! Body Definition !
+	READ(3,*)
+	READ(3,*) Flag(2)	
+	IF (Flag(2).EQ.1) THEN
+		READ(3,*) NSE 
+		READ(3,*) NB
+		
+		ALLOCATE(SURF(12,1:NSE+1),SCEN(2,1:NSE+1),MNMX(4,1:NSE+1),BD(1:NSE+1))
+		ALLOCATE(GSM(1:NB),Ac_Max(1:NB),Ac_CLLE(3,1:NB),Ac_CLLM(2,1:NB),BODY_T(1:NB),BODY_V(1:NB))
+		!ALLOCATE(ETS(2,NSE),ERS(2,NSE),EVS(2,NSE),QI(NSE),Q_I(NSE),Q_R(NSE),QR(NSE),QF(NSE))!!!ADDED FOR HEAT FLUX
+		ALLOCATE(QI(NSE),Q_I(NSE),Q_R(NSE),QR(NSE),QF(NSE))!!!ADDED FOR HEAT FLUX
+		ALLOCATE(C_P(NSP_T),C_V(NSP_T))
+		DO 600 KK=1,NB	
+			READ(3,*) NS
+			DO 610 K=1,NS
+				TNS=TNS+1
+				BD(TNS)=KK
+				READ(3,*) SURF(1,TNS),SURF(2,TNS)
+				IF(K.NE.1)THEN
+					SURF(3,TNS-1) = SURF(1,TNS)
+					SURF(4,TNS-1) = SURF(2,TNS)
+					IF(K.EQ.NS) THEN
+						SURF(3,TNS) = SURF(1,TNS-NS+1)
+						SURF(4,TNS) = SURF(2,TNS-NS+1)
+					END IF
+				END IF
+610	 	CONTINUE
+			READ(3,*) BODY_T(KK)
+			READ(3,*) BODY_V(KK)
+			READ(3,*) GSM(KK)
+			READ(3,*) Ac_Max(KK)
+			READ(3,*) Ac_CLLE(1,KK)!!!ENERGY ACC CO-EFF
+			READ(3,*) Ac_CLLM(1,KK)!!!MOMENTUM ACC CO-EFF
+600	 CONTINUE
+		READ(3,*) CHARLEN
+		READ(3,*) BODYNAME
+		READ(3,*) ALFA_INT
+	END IF
+ CLOSE(3)
+IF(rank.EQ.0)WRITE(*,*)"READ ........................ SUCCESSFUL"
+END SUBROUTINE
